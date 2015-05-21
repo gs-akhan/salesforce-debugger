@@ -12,7 +12,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
 	<script>
-	  var socket = io.connect('https://localhost:3000');
+	  var socket = io.connect();
 	  socket.on('news', function (data) {
 	   	$("body").append("<div>"+JSON.stringify(data)+"</div>");
 	  });
