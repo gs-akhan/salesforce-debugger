@@ -41,7 +41,6 @@ app.use('/users', users);
 
 app.get('/debug', function(req, res) {
   
-      
     io.sockets.emit('NEWS', {
       data : JSON.stringify(req.body)
     });
@@ -54,14 +53,13 @@ app.get('/debug', function(req, res) {
 
 app.post('/debug', function(req, res) {
 
+  var orgId = socketMaps[req.body.orgId];
+  if(orgId) {
+    io.sockets.socket(socketMaps[orgId]).emit("NEWS", {
+      data : JSON.stringify(req.body)
+    });    
+  }
 
-  console.log(req.body);
-  console.log("Azhar is here");
-
-
-  io.sockets.emit("NEWS", {
-    data : JSON.stringify(req.body)
-  });
   res.json({
     "msg" : "Thank you"
   });
