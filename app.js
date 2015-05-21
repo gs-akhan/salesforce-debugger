@@ -42,7 +42,7 @@ app.use('/users', users);
 app.get('/debug', function(req, res) {
   
     io.sockets.emit('NEWS', {
-      data : JSON.stringify(req.body)
+      data : JSON.stringify(socketMaps)
     });
   
   
@@ -52,7 +52,10 @@ app.get('/debug', function(req, res) {
 });
 
 app.post('/debug', function(req, res) {
+  
 
+  console.log("AZHARRRRRRR");
+  
   var orgId = socketMaps[req.body.orgId];
   if(orgId) {
     io.sockets.socket(socketMaps[orgId]).emit("NEWS", {
