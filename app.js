@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var socketMaps = {};
 
-
-
+//io.sockets.connected[socketid].emit('message', 'for your eyes only');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -19,11 +19,9 @@ server.listen(port);
 
 
 io.on("connection", function(socket) {
-  
-    socket.emit('news', {
-      hello : "Welcome dude !!!"
+    socket.on("SUBSCRIBE", function(data){
+      socketMaps[data.orgId] = socket.id;
     });
-  
 });
 
 // view engine setup
@@ -42,19 +40,31 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.get('/debug', function(req, res) {
-  io.sockets.emit("news", {
-    hello : JSON.stringify(req.body)
-  });
-
-  res.json({
-    "msg" : "Thank you"
-  });
+    res.json({
+      "msg" :  JSON.stringify(socketMaps)
+    });
 });
 
 app.post('/debug', function(req, res) {
-  io.sockets.emit("news", {
-    hello : JSON.stringify(req.body)
-  });
+  
+
+  console.log("AZHARRRRRRR");
+  console.log(req.body);
+
+
+
+  var socketId = socketMaps[req.body.orgId];
+
+  console.log(socketId);
+
+  console.log("JUST BEFORE")
+
+  if(socketId) {
+    io.to(socketId).emit("NEWS", {
+      data : JSON.stringify(req.body)
+    });    
+  }
+
   res.json({
     "msg" : "Thank you"
   });
