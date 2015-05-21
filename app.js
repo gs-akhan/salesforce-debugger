@@ -40,20 +40,21 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.get('/debug', function(req, res) {
-  if(req.body.orgId) {
-    io.sockets.connected[socketMaps[req.body.orgId]].emit('NEWS', {
-      hello : JSON.stringify(req.body)
-    });
-  }
   
-  res.json({
-    "msg" : "Thank you"
-  });
+      
+    io.sockets.emit('NEWS', {
+      data : JSON.stringify(req.body)
+    });
+  
+  
+    res.json({
+      "msg" : "Thank you"
+    });
 });
 
 app.post('/debug', function(req, res) {
-  io.sockets.emit("news", {
-    hello : JSON.stringify(req.body)
+  io.sockets.emit("NEWS", {
+    data : JSON.stringify(req.body)
   });
   res.json({
     "msg" : "Thank you"
