@@ -49,6 +49,7 @@ app.post('/debug', function(req, res) {
   
 
   console.log("AZHARRRRRRR");
+  console.log(req.body);
 
 
 
