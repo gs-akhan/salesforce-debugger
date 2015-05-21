@@ -50,7 +50,14 @@ app.post('/debug', function(req, res) {
 
   console.log("AZHARRRRRRR");
 
+
+
   var orgId = socketMaps[req.body.orgId];
+
+  console.log(orgId);
+
+  console.log("JUST BEFORE")
+
   if(orgId) {
     io.sockets.socket(socketMaps[orgId]).emit("NEWS", {
       data : JSON.stringify(req.body)
