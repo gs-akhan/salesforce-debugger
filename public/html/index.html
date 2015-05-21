@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<title>Debug Logger</title>
+		<style>
+			.json-ctn h6 {margin-top: 21px !important} 
+		</style>
+	</head>
+	<body>
+		
+		<div class="container-fluid">
+			<h1>Debug Logger</h1>
+			<div class="row">
+				<div class="col-md-4">
+					<form>
+						<div class="form-group">
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Org Id">
+						</div>
+					</form>		
+				</div>
+				<div class="col-md-8">
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-8">
+					<form>
+						<div class="form-group">
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search">
+						</div>
+					</form>	
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="row json-ctn">
+					<div class="col-md-6">
+						<h3>Lorem Ipsum</h3>
+					</div>
+					<div class="col-md-3">
+						<h6>5-21-2015 10:38 PM Thursday</h6>
+					</div>
+					<div class="col-md-1">
+						<h6>X</h6>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-12"><code>
+						{
+							"adoptionConfig":{
+							"trendArea":"CS360",
+							"usesEndDateAsWeekName":false,
+							"isBBV":true,
+							"isnewAdoption":true,
+							"isWeeklyAdoption":true,
+							"numOfPeriods":52,
+							"isNSEnabled":true,
+							"weekStartsOn":"Mon",
+							"sd":1401062400000,
+							"isExternalReportEnabled":true,
+							"reportList":"{"Collection":{"Id":"e30289a1-813e-4963-a7ec-fd9e5794bdf7","Name":""},"reports":[{"Id":"d41ce27d-8e1d-4000-9cd1-0d8c38e6ed5f","Name":"JU"},{"Id":"3055ddab-64bb-4c85-8c37-a45fac8bc19e","Name":"Report1"}]}",
+							"adpMeasuresMap":{
+							"Visitings":"All_Logins__c"
+							},
+							"ed":1432425600000,
+							"usageUtilizationCalcType":"",
+							"custList":{
+							},
+							"adpAggType":"USERLEVEL",
+							"adoptionMeasuresList":[
+							{
+							"alias":"adpMS1",
+							"color":"#90f8dc",
+							"fieldName":"All_Logins__c",
+							"id":"a0gj0000001MlvqAAC",
+							"isIndicator":false,
+							"label":"Visitings",
+							"shortName":"Visitings",
+							"sysName":"Visitings"
+							}
+							],
+							"startYear":2014,
+							"isDefault":true,
+							"selWeek":1431907200000,
+							"includeUsersInGraph":true,
+							"includeUsers":true,
+							"measures":[
+							{
+							"alias":"adpMS1",
+							"color":"#90f8dc",
+							"fieldName":"All_Logins__c",
+							"id":"a0gj0000001MlvqAAC",
+							"isIndicator":false,
+							"label":"Visitings",
+							"shortName":"Visitings",
+							"sysName":"Visitings"
+							}
+							],
+							"startMonth":5
+							},
+							"data":{
+							}
+						}
+						</code>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
