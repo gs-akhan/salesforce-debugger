@@ -4,6 +4,7 @@
   "private": true,
   "main" : "app.js",
   "scripts": {
+    "start" : "node app.js"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
