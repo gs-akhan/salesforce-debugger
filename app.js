@@ -53,6 +53,12 @@ app.get('/debug', function(req, res) {
 });
 
 app.post('/debug', function(req, res) {
+
+
+  console.log(req.body);
+  console.log("Azhar is here");
+
+
   io.sockets.emit("NEWS", {
     data : JSON.stringify(req.body)
   });
