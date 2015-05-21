@@ -53,14 +53,14 @@ app.post('/debug', function(req, res) {
 
 
 
-  var orgId = socketMaps[req.body.orgId];
+  var socketId = socketMaps[req.body.orgId];
 
-  console.log(orgId);
+  console.log(socketId);
 
   console.log("JUST BEFORE")
 
-  if(orgId) {
-    io.sockets.socket(socketMaps[orgId]).emit("NEWS", {
+  if(socketId) {
+    io.to(socketId).emit("NEWS", {
       data : JSON.stringify(req.body)
     });    
   }
