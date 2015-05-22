@@ -6,6 +6,7 @@
     <script type="text/javascript" src = "/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src = "/javascripts/angular.min.js"></script>
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
    	<script src="javascripts/bootstrap.min.js"></script>
  	<script src="/javascripts/bootstrap.min.js"></script>
  	<script src="/socket.io/socket.io.js"></script>
@@ -33,7 +34,7 @@
 			</div>
 			<div class="container-fluid" >
 				<div class="row">
-					<div classgit s="col-md-8">
+					<div class ="col-md-12">
 						
 							<div class="form-group">
 							<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search" ng-model = "searchedData">
@@ -44,24 +45,21 @@
 				<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
 					<div class="row json-ctn">
 						<div class="col-md-6">
-							<h3>{{log.logName}}</h3>
+							<h4>{{log.logName}}</h4>
 						</div>
-						<div class="col-md-3 col-md-offset-3 header-sides">
-								<ul class="list-inline">
-									<li>5-21-2015 10:38 PM Thursday</li>
-									<li><span class="glyphicon glyphicon-remove crossIcon" ng-click="deleteLog($index)" title = "Delete log"></span></li>
-								</ul>
+						<div class="col-md-3 col-md-offset-3 infoSection">
+						<span class="label label-info dateLabel">5-21-2015 10:38 PM Thursday</span>
+						
+						<i data-toggle="tooltip" title = "Delete Log" class="fa fa-trash-o deleteIcon" ng-click="deleteLog($index)"></i>
 						</div>
 					</div>	
+					
 					<div class="row">
-						<div class="col-md-6 col-md-offset-6" style="padding-right: 0">
-							<ul class="list-inline utils">
-								<li ng-click="prettifyJSON($event)">Pretty</li><li>Copy</li>
-							</ul>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12 logsArea">
+							<div class="utils">
+								<div  data-toggle="tooltip" title = "Indent JSON" class="prettify" ng-click="prettifyJSON($event)">Prettify</div>
+								<div  data-toggle="tooltip" title = "Copy to Clipboard" class="copyToClip">Copy</div>
+							</div>
 							<pre>{{log.logs}}</pre>
 						</div>
 					</div>

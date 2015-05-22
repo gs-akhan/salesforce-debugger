@@ -6,7 +6,13 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [];
+		$scope.logsData = [{
+			logName : "Azhar",
+			logs  : JSON.stringify({name : "azhar"})
+		},{
+			logName : "Azhar",
+			logs  : JSON.stringify({name : "azhar"})
+		}];
 		
 		
 		socket.on("NEWS", function(data) {
@@ -34,7 +40,7 @@
 		};
 
 		$scope.prettifyJSON = function($event) {
-			var $target = $($event.currentTarget).closest('.json-wrp');
+			var $target = $($event.currentTarget).closest('.logsArea');
 			var jsonText = $target.find("pre").text().trim();
 			if(jsonText) {
 				jsonText = JSON.parse(jsonText);
@@ -53,3 +59,9 @@
 		}]);
 
 })();
+
+$(document).ready(function() {
+
+
+	$('[data-toggle="tooltip"]').tooltip();
+});
