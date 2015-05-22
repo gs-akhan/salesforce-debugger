@@ -6,10 +6,7 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [{
-		logName : "azhar",
-		logs : JSON.stringify({'name': 'asdasdas'})
-	}];
+		$scope.logsData = [];
 		
 		
 		socket.on("NEWS", function(data) {
@@ -20,13 +17,13 @@
 
 
 		$scope.subscribe = function(id) {
-			var orgId = $scope.sDebuggerId;
-			if(orgId) {
+			var userName = $scope.sDebuggerId;
+			if(userName) {
 				socket.emit('SUBSCRIBE', {
-					orgId : orgId
+					userName : userName
 				});
-				//Storing ORGID into local storage
-				window.localStorage.setItem('sDebuggerId', orgId);
+				//Storing userName into local storage
+				window.localStorage.setItem('sDebuggerId', userName);
 			}
 
 		}

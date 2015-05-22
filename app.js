@@ -19,11 +19,11 @@ server.listen(port);
 
 
 io.on("connection", function(socket) {
-    console.log("CONNECTED" + socket.id);
     socket.on("SUBSCRIBE", function(data){
-      console.log('SUBSCRIBED' + socket.id);  
-      socketMaps[data.orgId] = socket.id;
+      socketMaps[data.userName] = socket.id;
+      console.log(socketMaps);
     });
+
 });
 
 // view engine setup
@@ -48,9 +48,7 @@ app.get('/debug', function(req, res) {
 });
 
 app.post('/debug', function(req, res) {
-
-  var socketId = socketMaps[req.body.orgId];
-
+  var socketId = socketMaps[req.get('userName')];
   if(socketId) {
     io.to(socketId).emit("NEWS", req.body);    
   }
