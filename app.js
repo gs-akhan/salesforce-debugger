@@ -60,9 +60,7 @@ app.post('/debug', function(req, res) {
   console.log("JUST BEFORE")
 
   if(socketId) {
-    io.to(socketId).emit("NEWS", {
-      data : req.body
-    });    
+    io.to(socketId).emit("NEWS", req.body);    
   }
 
   res.json({
