@@ -9,7 +9,8 @@ a {
 	font-size: 20px;
 	cursor: pointer;
 }
-code {word-wrap: break-word;}
+pre {word-wrap: break-word; text-align: left;}
+code {word-wrap: break-word; text-align: left;}
 .header-sides {
 	margin-top: 25px;
 }
@@ -33,6 +34,7 @@ code {word-wrap: break-word;}
 	border-top: 1px solid green;
 	border-right: 0;
 	border-bottom: 1px solid green;
+	cursor: pointer;
 }
 .utils li:last-child {
 	border-right: none;

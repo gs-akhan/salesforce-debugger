@@ -6,7 +6,10 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [];
+		$scope.logsData = [{
+		logName : "azhar",
+		logs : JSON.stringify({'name': 'asdasdas'})
+	}];
 		
 		
 		socket.on("NEWS", function(data) {
@@ -32,6 +35,16 @@
 		$scope.deleteLog = function(index) {
 			$scope.logsData.splice(index, 1)	
 		};
+
+		$scope.prettifyJSON = function($event) {
+			var $target = $($event.currentTarget).closest('.json-wrp');
+			var jsonText = $target.find("pre").text().trim();
+			if(jsonText) {
+				jsonText = JSON.parse(jsonText);
+				$target.find("pre").html(JSON.stringify(jsonText, null, 2));
+			}
+			
+		}
 
 
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
