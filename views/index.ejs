@@ -10,6 +10,10 @@
    	<script src="javascripts/bootstrap.min.js"></script>
  	<script src="/javascripts/bootstrap.min.js"></script>
  	<script src="/socket.io/socket.io.js"></script>
+ 	
+ 	<script src="/javascripts/Zeroclipboard.min.js"></script>
+
+ 	<script src="/javascripts/ngclip.min.js"></script>
  	<script src="/javascripts/app.js"></script>
   </head>
 
@@ -58,7 +62,9 @@
 						<div class="col-md-12 logsArea">
 							<div class="utils">
 								<div  data-toggle="tooltip" title = "Indent JSON" class="prettify" ng-click="prettifyJSON($event)">Prettify</div>
-								<div  data-toggle="tooltip" title = "Copy to Clipboard" class="copyToClip">Copy</div>
+								<div data-toggle="tooltip" data-clipboard-text = "{{log.logs}}" 
+								title = "Copy to Clipboard" class="copyToClip" ng-click = "copyClip($event)"
+								clip-copy="getTextToCopy()" clip-click="doSomething()">Copy</div>
 							</div>
 							<pre>{{log.logs}}</pre>
 						</div>
