@@ -16,13 +16,12 @@
 
 
 
-		$scope.subscribe = function() {
-			var orgId = $element.find("#orgId").val().trim();
+		$scope.subscribe = function(id) {
+			var orgId = $scope.sDebuggerId;
 			if(orgId) {
 				socket.emit('SUBSCRIBE', {
 					orgId : orgId
 				});
-
 				//Storing ORGID into local storage
 				window.localStorage.setItem('sDebuggerId', orgId);
 			}
@@ -36,7 +35,6 @@
 
 
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
-		
 		if($scope.sDebuggerId) {
 			$scope.subscribe();
 		}
