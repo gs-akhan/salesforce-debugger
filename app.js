@@ -61,7 +61,7 @@ app.post('/debug', function(req, res) {
 
   if(socketId) {
     io.to(socketId).emit("NEWS", {
-      data : JSON.stringify(req.body)
+      data : req.body
     });    
   }
 
