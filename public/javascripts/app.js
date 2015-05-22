@@ -17,7 +17,7 @@
 		$scope.subscribe = function() {
 			var orgId = $element.find("#orgId").val().trim();
 			if(orgId) {
-				socket.emit('SUBS			CRIBE', {
+				socket.emit('SUBSCRIBE', {
 					orgId : orgId
 				});
 			}
