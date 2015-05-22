@@ -9,6 +9,7 @@
 
 		socket.on("NEWS", function(data) {
 			$scope.logsData.push(data);
+			 $scope.$apply();
 		});
 
 
@@ -22,6 +23,6 @@
 			}
 		}
 
-	}]);
+		}]);
 
 })();
