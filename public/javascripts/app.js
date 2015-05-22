@@ -6,10 +6,7 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [{
-		logName : "azhar",
-		logs : JSON.stringify({'name': 'asdasdas'})
-	}];
+		$scope.logsData = [];
 		
 		
 		socket.on("NEWS", function(data) {
