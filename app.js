@@ -19,7 +19,9 @@ server.listen(port);
 
 
 io.on("connection", function(socket) {
+    console.log("CONNECTED" + socket.id);
     socket.on("SUBSCRIBE", function(data){
+      console.log('SUBSCRIBED' + socket.id);  
       socketMaps[data.orgId] = socket.id;
     });
 });
@@ -46,18 +48,8 @@ app.get('/debug', function(req, res) {
 });
 
 app.post('/debug', function(req, res) {
-  
-
-  console.log("AZHARRRRRRR");
-  console.log(req.body);
-
-
 
   var socketId = socketMaps[req.body.orgId];
-
-  console.log(socketId);
-
-  console.log("JUST BEFORE")
 
   if(socketId) {
     io.to(socketId).emit("NEWS", req.body);    
