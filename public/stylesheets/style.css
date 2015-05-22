@@ -1,12 +1,40 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 .crossIcon {
 	font-size: 20px;
 	cursor: pointer;
+}
+code {word-wrap: break-word;}
+.header-sides {
+	margin-top: 25px;
+}
+.header-sides ul {
+	float: right;
+}
+.json-wrp {
+	border: 2px solid green;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+.json-ctn {
+	border-bottom: 2px solid green;
+}
+.utils {
+	float: right;
+	margin-top: -1px;
+}
+.utils li {
+	border-left: 1px solid green;
+	border-top: 1px solid green;
+	border-right: 0;
+	border-bottom: 1px solid green;
+}
+.utils li:last-child {
+	border-right: none;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app ="SDebugger">
   <head>
-    <title><%= title %></title>
+    <title>Salesforce Debugger</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src = "/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src = "/javascripts/angular.min.js"></script>
@@ -41,24 +41,28 @@
 					
 					</div>
 				</div>
-				<div class="container-fluid" ng-repeat="log in logsData | filter:searchedData">
+				<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
 					<div class="row json-ctn">
 						<div class="col-md-6">
 							<h3>{{log.logName}}</h3>
 						</div>
-						<div class="col-md-3">
-							<h6>5-21-2015 10:38 PM Thursday</h6>
-						</div>
-						<div class="col-md-1">
-							<h6><span class="glyphicon glyphicon-remove crossIcon" ng-click="deleteLog($index)" title = "Delete log"></span></h6>
+						<div class="col-md-3 col-md-offset-3 header-sides">
+								<ul class="list-inline">
+									<li>5-21-2015 10:38 PM Thursday</li>
+									<li><span class="glyphicon glyphicon-remove crossIcon" ng-click="deleteLog($index)" title = "Delete log"></span></li>
+								</ul>
 						</div>
 					</div>	
 					<div class="row">
+						<div class="col-md-6 col-md-offset-6" style="padding-right: 0">
+							<ul class="list-inline utils">
+								<li>Pretty</li><li>Copy</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-12">
-
-						<code>
 						 {{log.logs}}
-						</code>	
 						</div>
 					</div>
 				</div>
