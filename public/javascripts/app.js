@@ -23,6 +23,7 @@
 			}
 		}
 
+
 		$scope.deleteLog = function(index) {
 			$scope.logsData.splice(index, 1)	
 		};
