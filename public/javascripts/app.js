@@ -5,7 +5,7 @@
 	var SDebugger = angular.module('SDebugger', []);
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
-		$scope.logsData = [{}];
+		$scope.logsData = [];
 
 		socket.on("NEWS", function(data) {
 			$scope.logsData.push(data);
