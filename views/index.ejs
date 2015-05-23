@@ -27,13 +27,6 @@
 							<div class="form-group">
 							<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "
 							sDebuggerId" ng-hide="isSubscribed"/>
-							
-							<div class="alert alert-info alert-dismissible" role="alert" ng-show="isSubscribed">
-							  
-							  <button ng-click="unsubscribeUser()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-							  </button>
-							  <strong>Printing logs for {{sDebuggerId}}</strong> 
-							</div>
 							</div>
 
 
@@ -45,6 +38,19 @@
 						</div>
 					</div>
 				</div>
+				<div class="row alertMsgContainer" ng-show ="isSubscribed">
+					<div class="col-md-4">
+						<div class="alert alert-info alert-dismissible" >
+					  
+						  <button ng-click="unsubscribeUser()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+						  </button>
+						  <strong>Printing logs for {{sDebuggerId}}</strong> 
+						</div>
+
+					</div>
+
+				</div>
+				
 			</div>
 			<div class="container-fluid" >
 				<div class="row">

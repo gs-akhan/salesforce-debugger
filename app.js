@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var socketMaps = {};
+var socketIDToOrg = {};
 
 //io.sockets.connected[socketid].emit('message', 'for your eyes only');
 var app = express();
@@ -19,11 +20,31 @@ server.listen(port);
 
 
 io.on("connection", function(socket) {
+    
     socket.on("SUBSCRIBE", function(data){
-      socketMaps[data.userName] = socket.id;
-      console.log(socketMaps);
+      socketMaps[data.userName] = socketMaps[data.userName] || [];
+      socketMaps[data.userName].push(socket.id);
+      socketIDToOrg[socket.id] = data.userName;
     });
 
+    socket.on('disconnect', function() {
+      
+      //Defer this operation, because it can happen when event loop is resting.
+      setImmediate(function() {
+        
+        var listOfSockets = socketMaps[socketIDToOrg[socket.id]]
+        
+        if(listOfSockets) {
+          listOfSockets.forEach(function(item, iter) {
+            if(item === socket.id) {
+              socketIDToOrg[socket.id] = undefined;
+              listOfSockets.splice(iter, 1);
+            }
+          });
+        }
+
+      });
+    });
 });
 
 // view engine setup
@@ -43,14 +64,17 @@ app.use('/users', users);
 
 app.get('/debug', function(req, res) {
     res.json({
-      "msg" :  JSON.stringify(socketMaps)
+      "msg" :  JSON.stringify(socketMaps),
+      "newSocketMap" : JSON.stringify(socketIDToOrg)
     });
 });
 
 app.post('/debug', function(req, res) {
-  var socketId = socketMaps[req.get('userName')];
-  if(socketId) {
-    io.to(socketId).emit("NEWS", req.body);    
+  var socketIds = socketMaps[req.get('userName')];
+  if(socketIds) {
+    socketIds.forEach(function(socketId, iter) {
+      io.to(socketId).emit("NEWS", req.body);
+    });    
   }
 
   res.json({

@@ -24,8 +24,9 @@
 					userName : userName
 				});
 				//Storing userName into local storage
-				$scope.isSubscribed = true;
 				window.localStorage.setItem('sDebuggerId', userName);
+				$scope.isSubscribed = true;
+
 			}
 
 		}
@@ -59,6 +60,8 @@
 			window.localStorage.removeItem('sDebuggerId');
 			$scope.sDebuggerId = null;
 			$scope.isSubscribed = false;
+			//When user unscribes, trigger disconnect event - It then flushes socket references on server
+			socket.disconnect();
 		};
 
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
