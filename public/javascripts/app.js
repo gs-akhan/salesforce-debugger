@@ -9,7 +9,7 @@
 		$scope.logsData = [];
 		
 		socket.on("NEWS", function(data) {
-			date.timeStamp = new Date();
+			data.timeStamp = new Date();
 			$scope.logsData.push(data);
 
 			$scope.$apply();
