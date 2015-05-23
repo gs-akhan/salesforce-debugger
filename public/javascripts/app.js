@@ -6,7 +6,10 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [];
+		$scope.logsData = [{
+			logName : "azhar",
+			logs : "azhar is nice"
+		}];
 		
 		socket.on("NEWS", function(data) {
 			$scope.logsData.push(data);
@@ -22,6 +25,7 @@
 					userName : userName
 				});
 				//Storing userName into local storage
+				$scope.isSubscribed = true;
 				window.localStorage.setItem('sDebuggerId', userName);
 			}
 
@@ -50,9 +54,17 @@
 				$target.innerHTML = "Copy";
 			},400);	
 		}
+		$scope.unsubscribeUser = function() {
+			//Delete sDebuggerID  from localstorage
+			//Send call to server to unsubscriber this socket for this userName
+			window.localStorage.removeItem('sDebuggerId');
+			$scope.sDebuggerId = null;
+			$scope.isSubscribed = false;
+		};
 
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
 		if($scope.sDebuggerId) {
+			$scope.isSubscribed = true;
 			$scope.subscribe();
 		}
 

@@ -4,7 +4,6 @@
     <title>Salesforce Debugger</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src = "/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src = "/javascripts/angular.min.js"></script>
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
@@ -15,6 +14,7 @@
  	<script src="/javascripts/Zeroclipboard.min.js"></script>
 	<script src="/javascripts/ngclip.min.js"></script>
  	<script src="/javascripts/app.js"></script>
+ 	<link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
 
@@ -25,11 +25,21 @@
 					<div class="col-md-4">
 						<form>
 							<div class="form-group">
-							<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "sDebuggerId" />
+							<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "
+							sDebuggerId" ng-hide="isSubscribed"/>
+							
+							<div class="alert alert-info alert-dismissible" role="alert" ng-show="isSubscribed">
+							  
+							  <button ng-click="unsubscribeUser()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+							  </button>
+							  <strong>Printing logs for {{sDebuggerId}}</strong> 
 							</div>
+							</div>
+
+
 						</form>		
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-8" ng-hide="isSubscribed">
 						<div class="form-group">
 							<button type="submit" class="btn btn-default" id = "subscribeBtn" ng-click="subscribe()">Subscribe</button>
 						</div>
