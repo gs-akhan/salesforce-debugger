@@ -10,7 +10,7 @@
 		
 		socket.on("NEWS", function(data) {
 			$scope.logsData.push(data);
-			 $scope.$apply();
+			$scope.$apply();
 		});
 
 
@@ -63,6 +63,6 @@
 
 $(document).ready(function() {
 
-
 	$('[data-toggle="tooltip"]').tooltip();
+	
 });
