@@ -1,4 +1,4 @@
-# Salesforce Streaming Debugger
+#Streaming Salesforce Debugger
 An indispensable tool for speading up debugging in Salesforce Apex.
 
 ### Three simple steps to get started.
