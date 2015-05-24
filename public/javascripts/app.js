@@ -15,8 +15,6 @@
 			$scope.$apply();
 		});
 
-
-
 		$scope.subscribe = function(id) {
 			var userName = $scope.sDebuggerId;
 			if(userName) {

@@ -1,96 +1,100 @@
 <!DOCTYPE html>
 <html ng-app ="SDebugger">
-  <head>
-    <title>Salesforce Debugger</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script type="text/javascript" src = "/javascripts/jquery.min.js"></script>
-    <script type="text/javascript" src = "/javascripts/angular.min.js"></script>
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
-   	<script src="javascripts/bootstrap.min.js"></script>
- 	<script src="/javascripts/bootstrap.min.js"></script>
- 	<script src="/socket.io/socket.io.js"></script>
- 	<script src="/javascripts/Zeroclipboard.min.js"></script>
+<head>
+	<title>Salesforce Debugger</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script type="text/javascript" src = "/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src = "/javascripts/angular.min.js"></script>
+	<link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+	<script src="javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/Zeroclipboard.min.js"></script>
 	<script src="/javascripts/ngclip.min.js"></script>
- 	<script src="/javascripts/app.js"></script>
- 	<link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+	<script src="/javascripts/app.js"></script>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
 
-    <body ng-controller="MainCtrl">
-    	   	<div class="container-fluid">
-				<h1>Streaming Salesforce Debugger</h1>
-				<div class="row">
-					<div class="col-md-4">
-						<form>
-							<div class="form-group">
-							<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "
-							sDebuggerId" ng-hide="isSubscribed"/>
-							</div>
-
-
-						</form>		
-					</div>
-					<div class="col-md-8" ng-hide="isSubscribed">
-						<div class="form-group">
-							<button type="submit" class="btn btn-default" id = "subscribeBtn" ng-click="subscribe()">Subscribe</button>
-						</div>
-					</div>
-				</div>
-				<div class="row alertMsgContainer" ng-show ="isSubscribed">
-					<div class="col-md-4">
-						<div class="alert alert-info alert-dismissible" >
-					  
-						  <button ng-click="unsubscribeUser()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
-						  </button>
-						  <strong>Printing logs for {{sDebuggerId}}</strong> 
-						</div>
-
-					</div>
-
-				</div>
-				
-			</div>
-			<div class="container-fluid" >
-				<div class="row">
-					<div class ="col-md-12">
-						
-							<div class="form-group">
-							<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search in fact anything..." ng-model = "searchedData">
-							</div>
+<body ng-controller="MainCtrl">
+	<div class="container-fluid">
+		<h1>Streaming Salesforce Debugger</h1>
+		<div class="row">
+			<form>
+				<div class="col-md-6">
 					
+					<div class="form-group">
+						<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "
+						sDebuggerId" ng-hide="isSubscribed"/>
 					</div>
-				</div>
-				<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
-					<div class="row json-ctn">
-						<div class="col-md-6">
-							<h4>{{log.logName}}</h4>
-						</div>
-						<div class="col-md-3 col-md-offset-3 infoSection">
-						<span class="label label-info dateLabel">{{log.timeStamp | date:'EEEE M MMM hh.mm.ss a'}}</span>
-						
-						<i data-toggle="tooltip" title = "Delete Log" class="fa fa-trash-o deleteIcon" ng-click="deleteLog($index)"></i>
-						</div>
-					</div>	
-					
-					<div class="row">
-						<div class="col-md-12 logsArea">
-							<div class="utils">
-								<div  data-toggle="tooltip" title = "Indent JSON" class="prettify" ng-click="prettifyJSON($event)">Prettify</div>
-								<div data-toggle="tooltip" data-clipboard-text = "{{log.logs}}" 
-								title = "Copy to Clipboard" class="copyToClip" ng-click = "copyClip($event)"
-								clip-copy="getTextToCopy()" clip-click="doSomething()">Copy</div>
-							</div>
-							<pre>{{log.logs}}</pre>
-						</div>
-					</div>
-				</div>
-				
-			</div>
 
+
+					
+				</div>
+
+				<div class="col-md-2 col-sm-12" ng-hide="isSubscribed">
+					<div class="form-group">
+						<button type="submit" class="btn btn-default btn-block" id = "subscribeBtn" ng-click="subscribe()">Subscribe</button>
+					</div>
+				</div>
+			</form>
 			
-	</body>
+		</div>
+		<div class="row alertMsgContainer" ng-show ="isSubscribed">
+			<div class="col-md-4">
+				<div class="alert alert-info alert-dismissible" >
+					
+					<button ng-click="unsubscribeUser()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Printing logs for {{sDebuggerId}}</strong> 
+				</div>
+
+			</div>
+
+		</div>
+		
+	</div>
+	<div class="container-fluid" >
+		<div class="row" ng-show ="isSubscribed">
+			<div class ="col-md-12">
+				
+				<div class="form-group">
+					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search in fact anything..." ng-model = "searchedData">
+				</div>
+				
+			</div>
+		</div>
+		<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
+			<div class="row json-ctn">
+				<div class="col-md-6">
+					<h4>{{log.logName}}</h4>
+				</div>
+				<div class="col-md-3 col-md-offset-3 infoSection">
+					<span class="label label-info dateLabel">{{log.timeStamp | date:'EEEE M MMM hh.mm.ss a'}}</span>
+					
+					<i data-toggle="tooltip" title = "Delete Log" class="fa fa-trash-o deleteIcon" ng-click="deleteLog($index)"></i>
+				</div>
+			</div>	
+			
+			<div class="row">
+				<div class="col-md-12 logsArea">
+					<div class="utils">
+						<div  data-toggle="tooltip" title = "Indent JSON" class="prettify" ng-click="prettifyJSON($event)">Prettify</div>
+						<div data-toggle="tooltip" data-clipboard-text = "{{log.logs}}" 
+						title = "Copy to Clipboard" class="copyToClip" ng-click = "copyClip($event)"
+						clip-copy="getTextToCopy()" clip-click="doSomething()">Copy</div>
+					</div>
+					<pre>{{log.logs}}</pre>
+				</div>
+			</div>
+		</div>
+		
+	</div>
 
 	
+</body>
+
+
 </html>
