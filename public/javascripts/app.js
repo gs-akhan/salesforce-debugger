@@ -1,7 +1,5 @@
 (function() {
 	var socket = io.connect();
-	
-
 	var SDebugger = angular.module('SDebugger', ['ngClipboard']);
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
@@ -73,10 +71,11 @@
 
 })();
 
-$(document).ready(function() {
-	window.applicationCache.addEventListener('updateready', function(e) { 
-		 if (window.applicationCache.status == window.applicationCache.UPDATEREADY) { 
-		 	window.location.reload();
-		 }
-	});
-});
+	window.onload = function() {
+		window.applicationCache.addEventListener('updateready', function(e) { 
+			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) { 
+			 	window.location.reload();
+			}
+		});	
+	}
+	
