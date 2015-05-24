@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app ="SDebugger">
+<html ng-app ="SDebugger" manifest="cache.appcache">
 <head>
 	<title>Salesforce Debugger</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,14 +24,14 @@
 		<div class="row">
 			<form>
 				<div class="col-md-6">
-					
+
 					<div class="form-group">
 						<input type="text" class="form-control" id="userName" placeholder="Enter Salesforce User name" ng-model = "
 						sDebuggerId" ng-hide="isSubscribed"/>
 					</div>
 
 
-					
+
 				</div>
 
 				<div class="col-md-2 col-sm-12" ng-hide="isSubscribed">
@@ -40,12 +40,12 @@
 					</div>
 				</div>
 			</form>
-			
+
 		</div>
 		<div class="row alertMsgContainer" ng-show ="isSubscribed">
 			<div class="col-md-4">
 				<div class="alert alert-info alert-dismissible" >
-					
+
 					<button ng-click="unsubscribeUser()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
 					</button>
 					<strong>Printing logs for {{sDebuggerId}}</strong> 
@@ -54,16 +54,16 @@
 			</div>
 
 		</div>
-		
+
 	</div>
 	<div class="container-fluid" >
 		<div class="row" ng-show ="isSubscribed">
 			<div class ="col-md-12">
-				
+
 				<div class="form-group">
 					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search in fact anything..." ng-model = "searchedData">
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
@@ -73,11 +73,11 @@
 				</div>
 				<div class="col-md-3 col-md-offset-3 infoSection">
 					<span class="label label-info dateLabel">{{log.timeStamp | date:'EEEE M MMM hh.mm.ss a'}}</span>
-					
+
 					<i data-toggle="tooltip" title = "Delete Log" class="fa fa-trash-o deleteIcon" ng-click="deleteLog($index)"></i>
 				</div>
 			</div>	
-			
+
 			<div class="row">
 				<div class="col-md-12 logsArea">
 					<div class="utils">
@@ -90,10 +90,10 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
-	
+
 </body>
 
 

@@ -1,0 +1,15 @@
+CACHE MANIFEST
+#test run v0.0.0111
+CACHE:
+	javascripts/jquery.min.js
+	javascripts/angular.min.js
+	stylesheets/bootstrap.min.css
+	stylesheets/font-awesome.min.css
+	javascripts/bootstrap.min.js
+	javascripts/bootstrap.min.js
+	socket.io/socket.io.js
+	javascripts/Zeroclipboard.min.js
+	javascripts/ngclip.min.js
+
+NETWORK:
+*

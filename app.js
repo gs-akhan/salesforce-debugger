@@ -60,7 +60,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+
+app.get("/cache.appcache", function(req, res){
+  res.set("Content-Type", "text/cache-manifest");
+  res.set("Cache-Control", "no-store, no-cache");
+  res.set("Expires", "-1");
+  res.sendFile("/cache.appcache", {root: __dirname});
+});
 
 app.get('/debug', function(req, res) {
     res.json({
