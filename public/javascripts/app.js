@@ -60,6 +60,10 @@
 			socket.disconnect();
 		};
 
+		$scope.clearAllLogs  = function() {
+			$scope.logsData.length = 0;
+		}
+
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
 		if($scope.sDebuggerId) {
 			$scope.isSubscribed = true;
@@ -77,5 +81,7 @@
 			 	window.location.reload();
 			}
 		});	
+
+		 $('[data-toggle="tooltip"]').tooltip()
 	}
 	

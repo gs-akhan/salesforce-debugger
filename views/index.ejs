@@ -56,12 +56,15 @@
 	</div>
 	<div class="container-fluid" >
 		<div class="row" ng-show ="isSubscribed">
-			<div class ="col-md-12">
+			<div class ="col-md-11">
 
 				<div class="form-group">
 					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search in fact anything..." ng-model = "searchedData">
 				</div>
 
+			</div>
+			<div class ="col-md-1">
+				<button class = "btn btn-primary" ng-click="clearAllLogs()" data-toggle="tooltip" data-placement="top" title="Delete All Logs"><i class="fa fa-trash-o fa-2"></i></button>
 			</div>
 		</div>
 		<div class="container-fluid json-wrp" ng-repeat="log in logsData | filter:searchedData">
