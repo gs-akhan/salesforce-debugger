@@ -61,7 +61,7 @@
 		};
 
 		$scope.clearAllLogs  = function() {
-			$scope.logsData.length = 0;
+			$scope.logsData = [];
 		}
 
 		$scope.sDebuggerId = window.localStorage.getItem('sDebuggerId') || "";
