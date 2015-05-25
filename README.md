@@ -13,35 +13,41 @@ SDebugger uses APEX call outs to a [heroku app](https://sdebugger.herokuapp.com)
 ```
 public with sharing class RestLogger {
 	
-	public static void debug(String logname,String logs){
+	private String className = '';
 		
-		Http h = new Http();
+	public RestLogger(Object srcObject){
+		className = String.valueOf(srcObject).substring(0,String.valueOf(srcObject).indexOf(':'));
+	}
+
+	public  void debug(String logname,String logs){
+		
+		Http h = new Http(); 
 		Map<String,String> logMap = new Map<String,String>();
 		logMap.put('orgId',UserInfo.getOrganizationId());
 		logMap.put('logs',logs);
-		logMap.put('logName',logname);
-		
-		HttpRequest req = new HttpRequest();
-
-		req.setHeader('_orgId',UserInfo.getOrganizationId().subString(0,UserInfo.getOrganizationId().length()-3));
-		req.setHeader('orgId',UserInfo.getOrganizationId());
-		req.setHeader('userName',UserInfo.getUserName());
-		req.setHeader('Content-Type', 'application/json');
-		req.setEndpoint('https://sdebugger.herokuapp.com/debug');
+		logMap.put('logName',className);
+	 	HttpRequest req = new HttpRequest();
+	 	req.setHeader('userName',UserInfo.getUserName());
+	  	req.setHeader('Content-Type', 'application/json');
+	 	req.setEndpoint('https://sdebugger.herokuapp.com/debug');
 		req.setMethod('POST');
 		req.setBody(JSON.serialize(logMap));
-			
 		HttpResponse res = h.send(req);
-
-	}
+		
+		system.debug('Rest call sent ');
+		
+	}	
 }
 ```
-#####Step 2.1 : Trigger events ```RestLogger.debug('logName',JSON.serialize(identifier));```
+#####Step 2.1 : Trigger events 
+Declare a static RestLogger reference variable at class level like 
+```private static Restlogger logger = new RestLogger(new MyClass());```
 
-Instead of using ```System.debug("logName", JSON.serialize(identifier));```, you can use ```RestLogger.debug('logName',JSON.serialize(identifier));```
+Instead of using ```System.debug("logName", JSON.serialize(identifier));```, you can use ```logger.debug('logName',JSON.serialize(identifier));```
 
 This will stream logs directly to [heroku app](https://sdebugger.herokuapp.com). Make sure you subscribe with SFDC Org Username to view logs.
 
+ 
 ###License
 Copyright (c) 2015, gs-akhan
 
