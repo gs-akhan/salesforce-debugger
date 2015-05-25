@@ -49,7 +49,7 @@ This will stream logs directly to [heroku app](https://sdebugger.herokuapp.com).
 
  
 ###License
-Copyright (c) 2015, gs-akhan
+Copyright (c) 2015, gs-akhan,gs-skumar
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
