@@ -40,7 +40,7 @@ public with sharing class RestLogger {
 }
 ```
 #####Step 2.1 : Trigger events 
-Declare a static RestLogger reference variable at class level like 
+Declare a static RestLogger reference variable at class level like    
 ```private static Restlogger logger = new RestLogger(new MyClass());```
 
 Instead of using ```System.debug("logName", JSON.serialize(identifier));```, you can use ```logger.debug('logName',JSON.serialize(identifier));```
