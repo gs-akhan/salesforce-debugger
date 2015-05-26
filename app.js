@@ -7,6 +7,16 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var redis = require("redis"),
+    
+     client = redis.createClient(process.env.redisport, process.env.redishost, {});
+    
+     client.auth(process.env.redispass, function(err, data) {
+      console.log(data);
+     });
+     client.on("error", function (err) {
+        console.log("Error " + err);
+    });
 var socketMaps = {};
 var socketIDToOrg = {};
 
@@ -69,9 +79,12 @@ app.get("/cache.appcache", function(req, res){
 });
 
 app.get('/debug', function(req, res) {
-    res.json({
-      "msg" :  JSON.stringify(socketMaps),
-      "newSocketMap" : JSON.stringify(socketIDToOrg)
+    client.get("debug-log-count", function(err, reply) {
+      res.json({
+        "msg" :  JSON.stringify(socketMaps),
+        "newSocketMap" : JSON.stringify(socketIDToOrg),
+        "logcounter" : reply
+      });
     });
 });
 
@@ -79,6 +92,7 @@ app.post('/debug', function(req, res) {
   var socketIds = socketMaps[req.get('userName')];
   if(socketIds) {
     socketIds.forEach(function(socketId, iter) {
+      client.incr("debug-log-count");
       io.to(socketId).emit("NEWS", req.body);
     });    
   }
