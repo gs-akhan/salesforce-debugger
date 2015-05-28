@@ -4,7 +4,7 @@
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
 		
 
-		$scope.logsData = [];
+            $scope.logsData = [];
 		
 		socket.on("NEWS", function(data) {
 			data.timeStamp = new Date();
@@ -28,9 +28,11 @@
 		}
 
 
-		$scope.deleteLog = function(index) {
-			$scope.logsData.splice(index, 1)	
-		};
+            $scope.deleteLog = function (index) {
+                $element.find('.json-wrp').eq(index).toggle("drop", function () {
+                    $scope.logsData.splice(index, 1);
+                });
+		    };
 
 		$scope.prettifyJSON = function($event) {
 			var $target = $($event.currentTarget).closest('.logsArea');
