@@ -1,4 +1,4 @@
-(function() {
+(function(window) {
 	var socket = io.connect();
 	var SDebugger = angular.module('SDebugger', ['ngClipboard']);
 	SDebugger.controller('MainCtrl', ['$scope' ,'$element' , function($scope, $element){
@@ -16,6 +16,7 @@
 		$scope.subscribe = function(id) {
 			var userName = $scope.sDebuggerId;
 			if(userName) {
+				socket.connect();
 				socket.emit('SUBSCRIBE', {
 					userName : userName
 				});
@@ -75,7 +76,7 @@
 
 		}]);
 
-})();
+})(window);
 
 	window.onload = function() {
 		window.applicationCache.addEventListener('updateready', function(e) { 
