@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#test run v0.0.1123pop
+#test run v0.0.1123popw22
 CACHE:
 	javascripts/jquery.min.js
 	javascripts/angular.min.js
@@ -10,6 +10,8 @@ CACHE:
 	socket.io/socket.io.js
 	javascripts/Zeroclipboard.min.js
 	javascripts/ngclip.min.js
+	fonts/fontawesome-webfont.woff2?v=4.3.0
+	stylesheets/style.css
 
 NETWORK:
 *
