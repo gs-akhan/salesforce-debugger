@@ -1,5 +1,5 @@
 #Streaming Salesforce Debugger
-An indispensable tool for speading up debugging in Salesforce Apex.
+An indispensable tool for speeding up debugging in Salesforce Apex.
 
 ### Three simple steps to get started.
 1. Add Remote site settings.
