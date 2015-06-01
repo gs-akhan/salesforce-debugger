@@ -1,7 +1,21 @@
 body {
-	padding: 5px 30px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    overflow:scroll;
 }
+.navbar {
+    color: white !important;
+    border: 1px solid #1fbc5a;
+    background: #20c05c;
+    border-radius: 0;
+}
+    .navbar a {
+        color: white !important;
+    }
+/*
+.debug-ctn .row div:last-child {
+    padding-left: 0;
+}
+    */
 a {
 	color: #00B7FF;
 }

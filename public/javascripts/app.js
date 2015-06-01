@@ -29,9 +29,10 @@
 
 
             $scope.deleteLog = function (index) {
-                $element.find('.json-wrp').eq(index).toggle("drop", function () {
+               /* $element.find('.json-wrp').eq(index).toggle("drop", function () {
                     $scope.logsData.splice(index, 1);
-                });
+                });*/
+               $scope.logsData.splice(index, 1);
 		    };
 
 		$scope.prettifyJSON = function($event) {

@@ -8,15 +8,16 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var redis = require("redis"),
-    
-     client = redis.createClient(process.env.redisport, process.env.redishost, {});
+   
+     client = redis.createclient(process.env.redisport, process.env.redishost, {});
     
      client.auth(process.env.redispass, function(err, data) {
       console.log(data);
      });
      client.on("error", function (err) {
-        console.log("Error " + err);
+        console.log("error " + err);
     });
+  
 var socketMaps = {};
 var socketIDToOrg = {};
 
@@ -72,10 +73,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 app.get("/cache.appcache", function(req, res){
-  res.set("Content-Type", "text/cache-manifest");
-  res.set("Cache-Control", "no-store, no-cache");
-  res.set("Expires", "-1");
-  res.sendFile("/cache.appcache", {root: __dirname});
+  res.set("content-type", "text/cache-manifest");
+  res.set("cache-control", "no-store, no-cache");
+  res.set("expires", "-1");
+  res.sendfile("/cache.appcache", {root: __dirname});
 });
 
 app.get('/debug', function(req, res) {
