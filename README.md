@@ -37,7 +37,8 @@ Instead of using ```System.debug("logName", JSON.serialize(identifier));```, you
 
 This will stream logs directly to [heroku app](https://sdebugger.herokuapp.com). Make sure you subscribe with SFDC Org Username to view logs.
 
- 
+### Contributions
+Feel free to add features that may address your useacase, Please start a discussion on issues before implmenting. 
 ###License
 Copyright (c) 2015, gs-akhan,gs-skumar
 
