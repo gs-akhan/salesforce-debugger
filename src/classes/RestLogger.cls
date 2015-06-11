@@ -24,5 +24,3 @@ public with sharing class RestLogger {
 		
 	}	
 }
-
-new RestLOgger.debug()
